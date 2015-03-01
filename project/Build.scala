@@ -3,7 +3,7 @@ import Keys._
 
 object BuildSettings {
   val buildSettings = Defaults.defaultSettings ++ Seq(
-    organization := "gkossakowski",
+    organization := "com.hackerschool",
     version := "1.0.0-SNAPSHOT",
     scalaVersion := "2.11.4",
     resolvers += Resolver.sonatypeRepo("snapshots"),
