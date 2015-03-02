@@ -1,4 +1,4 @@
-# Macros presented for Hacker Schools
+# Macros presented for Hacker Schoolers
 
 Three macros that I was live coding in front of awesome Hacker school crowd:
 
