@@ -1,7 +1,7 @@
 import scala.language.experimental.macros
 import scala.reflect.macros.blackbox.Context
 
-object LoggingMacrosComplete {
+object LoggingMacros {
   def log(str: String): Unit = macro logImpl
   def logImpl(c: Context)(str: c.Expr[String]): c.Expr[Unit] = {
     import c.universe._
@@ -9,6 +9,8 @@ object LoggingMacrosComplete {
       if (DefaultLogger.isLogging) DefaultLogger.log(str.splice)
     }
   }
+
+  // logAll("I'm here and my variable are", foo, bar)
 
   def logAll(params: Any*): Unit = macro logAllImpl
   def logAllImpl(c: Context)(params: c.Expr[Any]*): c.Expr[Unit] = {
@@ -46,11 +48,11 @@ object LoggingMacrosComplete {
       val caseClassParams = sym.info.decls.filter(isCaseAccessorMethod)
       def printCaseClassParam(s: Symbol): Tree = {
         val paramTpe = s.info.resultType.toString
-        val paramName = s.name.toString
+        val paramName = s.name.toString 
         q"""print($paramName + ": " + $paramTpe + " = " + x.${s.name.toTermName})"""
       }
-      val printedCaseClassParams = caseClassParams.map(x => printCaseClassParam(x))
-      val printStmts = Util.separateElems(q"""print(", ")""", printedCaseClassParams.toList)
+      val printedCaseClassParams = caseClassParams.map(x => printCaseClassParam(x)).toList
+      val printStmts = Util.separateElems(q"""print(", ")""", printedCaseClassParams)
       c.Expr[Unit](q"""{
         val x = $x
         print(${sym.name.toString} + "(")
