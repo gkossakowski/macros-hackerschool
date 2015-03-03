@@ -10,8 +10,6 @@ object LoggingMacros {
     }
   }
 
-  // logAll("I'm here and my variable are", foo, bar)
-
   def logAll(params: Any*): Unit = macro logAllImpl
   def logAllImpl(c: Context)(params: c.Expr[Any]*): c.Expr[Unit] = {
     import c.universe._
