@@ -1,12 +1,14 @@
 object Test extends App {
-  val foo: Int = 2
-  def bar(x: Int) = x*3
-  //LoggingMacros.log("some expensive computation" + bar(2))
-}
+  def foo(x: Int): Int = x+2
+  val bla = "abc"
+  // uncomment for bad things to happen
+  // def print(x: Any): Unit = println("Launching missiles")
 
-//LoggingMacros.logAll("my variables", foo, bar(5))
-//LoggingMacros.log("some expensive computation" + bar(2))
-// case class Foo(x: Int, y: String)
-// class Bar(x: Int)
-// LoggingMacros.printCaseClass(Foo(23, "abc"))
-//LoggingMacros.printCaseClass(new Bar(12))
+  // LoggingMacros.log("some msg " + foo(25))
+
+  // LoggingMacros.logAll("12", foo(25), bla)
+
+  // case class Foo(x: Int, y: String)
+  // val myFoo = Foo(71, "abc")
+  // LoggingMacros.printCaseClass(myFoo)
+}
